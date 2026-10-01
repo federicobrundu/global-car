@@ -24,12 +24,12 @@ const FOTOGRAMMI = [
   { p: 0, pos: [-0.55, 1.58, 8.3], look: [0.45, 0.92, 0.25], fov: 32, car: [2.15, 1.02, 0.45], rot: 0.1, luce: 1 },
   // Si allontana: l'officina è intorno, non un PNG appoggiato.
   { p: 0.1, pos: [-0.2, 1.85, 9.4], look: [0.7, 1.05, -2.6], fov: 38, car: [1.1, 1.0, -0.9], rot: 0.22, luce: 1.08 },
-  // Entra in cabina — i servizi.
-  { p: 0.22, pos: [0.1, 1.55, 3.2], look: [0.2, 1.2, -12], fov: 44, car: [0.3, 0.95, -4.6], rot: 0.08, luce: 1.18 },
-  // Dentro la cabina — come lavoriamo (passaggio 1-2).
-  { p: 0.38, pos: [0.15, 1.45, -5.5], look: [0, 1.2, -18], fov: 46, car: [0.12, 0.95, -11], rot: 0, luce: 1.28 },
+  // Entra in cabina — i servizi: l'auto si allontana nel box.
+  { p: 0.22, pos: [-0.15, 1.72, 6.4], look: [0.35, 1.12, -10], fov: 40, car: [0.7, 0.98, -3.4], rot: 0.08, luce: 1.12 },
+  // Dentro la cabina — come lavoriamo (passaggio 1-2): si vede il box, auto più piccola.
+  { p: 0.38, pos: [0.12, 1.62, 3.6], look: [0.08, 1.18, -16], fov: 46, car: [0.18, 0.95, -8.2], rot: 0.04, luce: 1.22 },
   // Fondo cabina — lavorazione (passaggio 3).
-  { p: 0.5, pos: [0.3, 1.4, -13.5], look: [0, 1.2, -24], fov: 46, car: [0.18, 0.95, -18], rot: -0.1, luce: 1.32 },
+  { p: 0.5, pos: [0.22, 1.55, 0.8], look: [0.05, 1.2, -22], fov: 48, car: [0.12, 0.95, -13], rot: -0.06, luce: 1.28 },
   // Svolta verso l'officina reale — chi siamo.
   { p: 0.64, pos: [3.4, 1.75, -8.2], look: [-0.5, 1.15, -11], fov: 42, car: [1.3, 0.98, -7], rot: -0.28, luce: 1.08 },
   // Campo largo — recensioni / perché.
@@ -41,9 +41,9 @@ const FOTOGRAMMI = [
 const FOTOGRAMMI_MOBILE = [
   { p: 0, pos: [0.05, 2.15, 8.4], look: [0, 1.15, 0.2], fov: 36, car: [0, 1.15, 0.5], rot: 0.08, luce: 1 },
   { p: 0.1, pos: [0.05, 2.0, 7.4], look: [0, 1.1, -3], fov: 40, car: [0, 1.05, -1], rot: 0.16, luce: 1.05 },
-  { p: 0.24, pos: [0, 1.55, 2.6], look: [0, 1.15, -12], fov: 46, car: [0, 0.95, -5], rot: 0.06, luce: 1.18 },
-  { p: 0.4, pos: [0, 1.42, -5.5], look: [0, 1.2, -18], fov: 48, car: [0, 0.95, -11], rot: 0, luce: 1.28 },
-  { p: 0.52, pos: [0.2, 1.38, -13], look: [0, 1.2, -22], fov: 48, car: [0, 0.95, -17], rot: -0.08, luce: 1.32 },
+  { p: 0.24, pos: [0, 1.65, 5.8], look: [0, 1.15, -10], fov: 42, car: [0, 0.98, -3.5], rot: 0.06, luce: 1.12 },
+  { p: 0.4, pos: [0, 1.55, 3.2], look: [0, 1.18, -16], fov: 46, car: [0, 0.95, -8], rot: 0.02, luce: 1.22 },
+  { p: 0.52, pos: [0.1, 1.5, 0.6], look: [0, 1.2, -22], fov: 48, car: [0, 0.95, -13], rot: -0.06, luce: 1.28 },
   { p: 0.66, pos: [2.2, 1.7, -8], look: [-0.3, 1.15, -11], fov: 44, car: [0.7, 0.98, -8], rot: -0.22, luce: 1.08 },
   { p: 0.82, pos: [0.15, 2.2, 5], look: [0, 1.1, -7], fov: 40, car: [0, 1.02, -2], rot: 0.12, luce: 0.95 },
   { p: 1, pos: [0.05, 2.1, 8.2], look: [0, 1.12, 0.15], fov: 36, car: [0, 1.12, 0.4], rot: 0.14, luce: 0.9 },
