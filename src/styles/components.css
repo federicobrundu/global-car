@@ -99,7 +99,8 @@
   flex-direction: column;
   gap: var(--spazio-3);
   padding: var(--spazio-5);
-  background-color: var(--superficie);
+  background-color: color-mix(in srgb, var(--superficie) 72%, transparent);
+  backdrop-filter: blur(8px);
   border: 1px solid var(--bordo);
   border-top: 2px solid var(--bordo);
   border-radius: var(--raggio);

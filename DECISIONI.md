@@ -28,9 +28,9 @@ Elenco crescente di scelte già fatte e **non più in discussione**. Serve a non
 
 | # | Decisione | Motivo |
 |---|---|---|
-| 10 | Hero = **Famiglia 2, effetti generativi** (superficie metallica + particelle) | Zero file da scaricare, carica subito, densità adattiva sul mobile (Modulo 4.3) |
-| 11 | **Nessun modello GLB** in questa versione | Global Car non ha file 3D propri; un modello da libreria aggiungerebbe peso, licenze e nessun valore informativo (Modulo 2.2) |
-| 12 | Cuore 3D = **sequenza di fotogrammi** (Modulo 10), non video collegato allo scroll | Lo scrubbing di un video è a scatti su mobile; la sequenza è fluida e non ha problemi di autoplay |
+| 10 | Hero + home = **un solo viaggio 3D** (camera e auto collegate allo scroll) | Il PNG statico e il pannello Ken Burns non raccontavano l'azienda; lo scroll è la linea del tempo (Modulo 3.3) |
+| 11 | **Nessun modello GLB** in questa versione | Global Car non ha file 3D propri; l'auto è la foto ritagliata del cliente, in scena come piano con alpha |
+| 12 | Cuore 3D = **ingresso in cabina** durante Come lavoriamo, stessa scena della hero | Un secondo canvas staccato spezzava il racconto |
 | 13 | **Scartati**: vetro/rifrazione, ombre dinamiche, riflessi real-time, più di un post-effetto | Sono le voci più care del budget prestazioni (Modulo 5.2) e il pubblico è su mobile |
 | 14 | Un solo effetto pesante per schermata | Evita l'errore tipico del Modulo 4.7 |
 | 15 | Zona del testo hero tenuta **intenzionalmente vuota** nella composizione della scena | È la soluzione di leggibilità più elegante delle tre (Modulo 3.2), senza velature pesanti |
@@ -72,12 +72,10 @@ Da aggiornare a ogni generazione (va nel preventivo come costo di produzione, Mo
 
 | Data | Asset | Modello | Note |
 |---|---|---|---|
-| 2026-10-01 | Video 8 s carrellata officina | Seedance 2.5 | **Non generato**: account richiede piano Plus o superiore |
-| 2026-10-01 | Panorama IBL cabina | GPT Image 2.5 | Preflight 0,25 crediti ok; generazione **bloccata** (piano Basic o superiore) |
+| 2026-10-01 | Video 8 s carrellata officina | Seedance 2.5 | **Non generato**: richiede piano Plus |
+| 2026-10-01 | 6 atmosfere (cabina, nebbia, diagnostica, pannello, gomma, corridoio) | GPT Image 2.5 | Generate con piano Basic. Uso: texture 3D percorso + hero interne. Non rappresentano il locale reale. |
 
-**Ripiego adottato (non più in discussione finché Higgsfield non genera):** sequenza Percorso = carrellata Ken Burns sulla foto reale `DSC4945-Modifica-scaled.jpg` (30 frame desktop + 20 mobile). È materiale del cliente, lecito, e rispetta il Modulo 10 (fotogrammi WebP, non video scrubbing).
-
-Quando il piano Higgsfield sarà attivo: sovrascrivere con `public/assets/video/percorso.mp4` + `npm run frames`. Non usare immagini generate per far passare un locale come fotografia reale (decisione 16).
+**Percorso:** scena Three.js (camera lungo quattro stazioni). Le texture sono illustrative, non foto dell'officina. Le foto reali restano in Chi siamo / Storia.
 
 ---
 

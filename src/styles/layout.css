@@ -67,7 +67,7 @@
 
 .navigazione__lista {
   display: flex;
-  gap: clamp(1rem, 2.5vw, 2rem);
+  gap: clamp(0.75rem, 1.8vw, 1.6rem);
 }
 
 .navigazione__lista a {
@@ -77,6 +77,7 @@
   color: var(--alluminio);
   position: relative;
   padding-block: 0.35rem;
+  white-space: nowrap;
 }
 
 /* Sottolineatura che cresce dal basso: transform, non width */
@@ -99,8 +100,48 @@
   }
 }
 
-.navigazione__lista a:focus-visible::after {
-  transform: scaleX(1);
+.navigazione__voce {
+  position: relative;
+}
+
+.navigazione__sotto {
+  position: absolute;
+  top: calc(100% + 0.7rem);
+  left: 0;
+  min-width: 16rem;
+  padding: var(--spazio-3);
+  background-color: color-mix(in srgb, var(--carbone) 96%, transparent);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio-grande);
+  display: none;
+  z-index: 120;
+}
+
+.navigazione__voce:hover .navigazione__sotto,
+.navigazione__voce:focus-within .navigazione__sotto {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.navigazione__sotto a {
+  display: block;
+  padding: 0.5rem 0.7rem;
+  text-decoration: none;
+  color: var(--alluminio);
+  font-size: var(--t-sm);
+}
+
+.navigazione__sotto a:hover {
+  color: var(--bianco);
+  background-color: var(--superficie-2);
+}
+
+.servizi-secondari__lista a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  text-decoration: none;
+  color: inherit;
 }
 
 .intestazione__azioni {
@@ -171,9 +212,12 @@
 }
 
 @media (max-width: 36rem) {
-  /* Su schermi piccoli la barra fissa in basso copre i contatti */
   .intestazione__azioni {
     display: none;
+  }
+
+  .eroe {
+    padding-bottom: 7.5rem;
   }
 }
 
@@ -214,89 +258,111 @@
   max-width: 44ch;
 }
 
-/* ---------- EROE ---------- */
-.eroe {
-  position: relative;
-  min-height: 100svh;
-  display: flex;
-  align-items: flex-end;
-  padding-top: calc(var(--altezza-intestazione) + var(--spazio-6));
-  padding-bottom: clamp(4rem, 10vh, 7rem);
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.eroe__scena {
-  position: absolute;
+/* ---------- VIAGGIO 3D (tutta la home) ---------- */
+.viaggio {
+  position: fixed;
   inset: 0;
-  z-index: -2;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--carbone);
 }
 
-.eroe__scena canvas {
+.viaggio canvas {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-/* Ripiego: immagine statica se il 3D non parte o non regge */
-.eroe__ripiego {
+.viaggio__ripiego {
+  display: none;
   position: absolute;
   inset: 0;
-  opacity: 0;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 8% 6%;
   background:
     radial-gradient(ellipse 70% 60% at 60% 40%, rgba(255, 59, 47, 0.18), transparent 70%),
     linear-gradient(160deg, #1a1f26 0%, var(--carbone) 70%);
-  transition: opacity 400ms ease;
 }
 
-.eroe__scena[data-ripiego-attivo] .eroe__ripiego {
-  opacity: 1;
+.viaggio[data-ripiego-attivo] .viaggio__ripiego {
+  display: flex;
 }
 
-/* L'auto: a destra su desktop, più piccola e centrata su mobile.
-   La zona del testo resta libera per scelta compositiva. */
-.eroe__veicolo {
+.viaggio[data-ripiego-attivo] .viaggio__ripiego img {
+  width: min(42vw, 28rem);
+  filter: drop-shadow(0 2rem 2.5rem rgba(0, 0, 0, 0.7));
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- EROE ---------- */
+.eroe {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--altezza-intestazione) + var(--spazio-6));
+  padding-bottom: clamp(4rem, 8vh, 6rem);
+  overflow: hidden;
+  isolation: isolate;
+  background: transparent;
+}
+
+.eroe::after {
+  content: '';
   position: absolute;
-  z-index: -1;
-  right: clamp(-6rem, -4vw, -2rem);
-  bottom: clamp(14%, 18vh, 24%);
-  width: clamp(26rem, 52vw, 50rem);
-  max-width: none;
-  filter: drop-shadow(0 2.5rem 3rem rgba(0, 0, 0, 0.65));
-  will-change: transform;
+  inset: 0;
+  z-index: 0;
   pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    var(--carbone) 0%,
+    color-mix(in srgb, var(--carbone) 82%, transparent) 30%,
+    color-mix(in srgb, var(--carbone) 28%, transparent) 52%,
+    transparent 70%
+  );
+}
+
+.eroe__griglia {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(18rem, 34rem) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1rem, 4vw, 3rem);
+  width: 100%;
+}
+
+.eroe__finestra {
+  min-height: 20rem;
 }
 
 @media (max-width: 62rem) {
   .eroe {
     align-items: flex-end;
-    min-height: 100svh;
+    padding-top: calc(var(--altezza-intestazione) + 38svh);
   }
 
-  .eroe__veicolo {
-    right: 50%;
-    translate: 50% 0;
-    bottom: auto;
-    top: clamp(5rem, 14vh, 9rem);
-    width: min(118%, 34rem);
-    opacity: 0.85;
+  .eroe__griglia {
+    grid-template-columns: 1fr;
   }
-}
 
-/* Gradiente che scurisce dove sta il testo: seconda rete di sicurezza
-   sulla leggibilità, oltre alla composizione della scena */
-.eroe::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(
-    to top,
-    var(--carbone) 2%,
-    color-mix(in srgb, var(--carbone) 82%, transparent) 26%,
-    transparent 62%
-  );
+  .eroe__finestra {
+    display: none;
+  }
+
+  .eroe::after {
+    background: linear-gradient(
+      to top,
+      var(--carbone) 28%,
+      color-mix(in srgb, var(--carbone) 70%, transparent) 55%,
+      transparent 82%
+    );
+  }
 }
 
 .eroe__contenuto {
@@ -341,6 +407,10 @@
   flex-wrap: wrap;
   gap: var(--spazio-3);
   margin-bottom: var(--spazio-6);
+}
+
+.eroe__azioni .bottone--grande {
+  padding: 0.85rem 1.35rem;
 }
 
 .eroe__garanzie {
@@ -455,6 +525,7 @@
 /* ---------- SERVIZI ---------- */
 .servizi {
   padding-block: var(--sezione-y);
+  min-height: 105vh;
 }
 
 .servizi__griglia {
@@ -502,55 +573,45 @@
   color: var(--alluminio-tenue);
 }
 
-/* ---------- PERCORSO (cuore 3D) ---------- */
+/* ---------- PERCORSO ---------- */
 .percorso {
   position: relative;
+  min-height: 165vh;
   padding-block: var(--sezione-y);
-  overflow: hidden;
+  padding-top: calc(var(--sezione-y) + 0.75rem);
+  overflow: visible;
   isolation: isolate;
+  scroll-margin-top: var(--altezza-intestazione);
+  background: transparent;
 }
 
-.percorso__media {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background-color: var(--carbone);
+.percorso__griglia {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
 }
 
-.percorso__ripiego {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.percorso__media canvas {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-}
-
-.percorso__media canvas[data-sequenza-assente] {
-  opacity: 0;
-}
-
-.percorso__velatura {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(
-    100deg,
-    var(--carbone) 0%,
-    color-mix(in srgb, var(--carbone) 88%, transparent) 42%,
-    color-mix(in srgb, var(--carbone) 55%, transparent) 100%
-  );
+.percorso__finestra {
+  min-height: 40vh;
 }
 
 .percorso__contenuto {
   position: relative;
+}
+
+@media (min-width: 64rem) {
+  .percorso__griglia {
+    grid-template-columns: minmax(22rem, 28rem) minmax(0, 1fr);
+  }
+
+  .percorso__contenuto {
+    position: sticky;
+    top: calc(var(--altezza-intestazione) + 1.2rem);
+  }
+
+  .percorso__finestra {
+    min-height: calc(100svh - var(--altezza-intestazione) - 2rem);
+  }
 }
 
 .sezione__intestazione--chiara .sezione__titolo {
@@ -614,7 +675,8 @@
 /* ---------- CHI SIAMO ---------- */
 .chi-siamo {
   padding-block: var(--sezione-y);
-  background-color: var(--superficie);
+  background-color: color-mix(in srgb, var(--superficie) 52%, transparent);
+  backdrop-filter: blur(6px);
   border-block: 1px solid var(--bordo);
 }
 
@@ -661,8 +723,10 @@
 
 .chi-siamo__media img {
   width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center 42%;
   border-radius: var(--raggio-grande);
-  /* Cornice sottile a contrasto, non ombra diffusa */
   border: 1px solid var(--bordo);
 }
 
@@ -688,7 +752,8 @@
 /* ---------- RECENSIONI ---------- */
 .recensioni {
   padding-block: var(--sezione-y);
-  background-color: var(--superficie);
+  background-color: color-mix(in srgb, var(--superficie) 48%, transparent);
+  backdrop-filter: blur(6px);
   border-block: 1px solid var(--bordo);
 }
 
@@ -762,10 +827,11 @@
 
 /* ---------- PIEDE ---------- */
 .piede {
+  position: relative;
+  z-index: 1;
   background-color: var(--carbone);
   border-top: 1px solid var(--bordo);
   padding-top: var(--spazio-8);
-  /* Spazio per la barra fissa mobile */
   padding-bottom: var(--spazio-5);
 }
 

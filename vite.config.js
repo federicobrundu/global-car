@@ -1,4 +1,8 @@
 import { defineConfig } from 'vite';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const radice = dirname(fileURLToPath(import.meta.url));
 
 /**
  * Configurazione Vite — Global Car
@@ -18,8 +22,17 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsInlineLimit: 2048,
-    // Three.js in un chunk separato: cambia raramente, resta in cache del browser
     rollupOptions: {
+      input: {
+        main: resolve(radice, 'index.html'),
+        storia: resolve(radice, 'storia.html'),
+        diagnostica: resolve(radice, 'diagnostica.html'),
+        riparazioni: resolve(radice, 'riparazioni-rapide.html'),
+        gomme: resolve(radice, 'gomme.html'),
+        revisione: resolve(radice, 'revisione.html'),
+        blog: resolve(radice, 'blog.html'),
+        contatti: resolve(radice, 'contatti.html'),
+      },
       output: {
         manualChunks: {
           three: ['three'],

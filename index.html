@@ -33,34 +33,53 @@
 <body>
   <a class="salta-contenuto" href="#contenuto">Salta al contenuto</a>
 
+  <div class="viaggio" data-viaggio aria-hidden="true">
+    <canvas data-scena-viaggio></canvas>
+    <div class="viaggio__ripiego">
+      <img src="./assets/images/auto-hero.webp" alt="" width="1024" height="1024" />
+    </div>
+  </div>
+
   <!-- ============================================================
        HEADER — sempre accessibile, CTA telefono visibile su mobile
        ============================================================ -->
   <header class="intestazione" data-intestazione>
     <div class="contenitore intestazione__griglia">
-      <a class="marchio" href="#contenuto" aria-label="Global Car, torna all'inizio">
+      <a class="marchio" href="./index.html" aria-label="Global Car, vai alla home">
         <span class="marchio__nome">Global<span class="marchio__accento">Car</span></span>
         <span class="marchio__sottotitolo">Carrozzeria · Roma</span>
       </a>
 
       <nav class="navigazione" aria-label="Navigazione principale">
         <ul class="navigazione__lista">
-          <li><a href="#servizi">Servizi</a></li>
-          <li><a href="#percorso">Come lavoriamo</a></li>
-          <li><a href="#chi-siamo">Chi siamo</a></li>
-          <li><a href="#recensioni">Recensioni</a></li>
-          <li><a href="#contatti">Contatti</a></li>
+          <li class="navigazione__voce">
+            <a href="./index.html#servizi">Servizi</a>
+            <ul class="navigazione__sotto">
+              <li><a href="./index.html#servizi">Verniciatura e sinistri</a></li>
+              <li><a href="./diagnostica.html">Diagnostica auto</a></li>
+              <li><a href="./riparazioni-rapide.html">Riparazioni rapide</a></li>
+              <li><a href="./gomme.html">Sostituzione gomme</a></li>
+              <li><a href="./revisione.html">Revisione auto</a></li>
+            </ul>
+          </li>
+          <li><a href="./storia.html">La nostra storia</a></li>
+          <li><a href="./index.html#percorso">Come lavoriamo</a></li>
+          <li><a href="./blog.html">Blog</a></li>
+          <li><a href="./contatti.html">Contatti</a></li>
         </ul>
       </nav>
 
       <details class="menu-compatto">
         <summary class="menu-compatto__pulsante">Menu</summary>
         <ul class="menu-compatto__lista">
-          <li><a href="#servizi">Servizi</a></li>
-          <li><a href="#percorso">Come lavoriamo</a></li>
-          <li><a href="#chi-siamo">Chi siamo</a></li>
-          <li><a href="#recensioni">Recensioni</a></li>
-          <li><a href="#contatti">Contatti</a></li>
+          <li><a href="./index.html#servizi">Verniciatura e sinistri</a></li>
+          <li><a href="./diagnostica.html">Diagnostica auto</a></li>
+          <li><a href="./riparazioni-rapide.html">Riparazioni rapide</a></li>
+          <li><a href="./gomme.html">Sostituzione gomme</a></li>
+          <li><a href="./revisione.html">Revisione auto</a></li>
+          <li><a href="./storia.html">La nostra storia</a></li>
+          <li><a href="./blog.html">Blog</a></li>
+          <li><a href="./contatti.html">Contatti</a></li>
         </ul>
       </details>
 
@@ -88,42 +107,32 @@
          HERO — scena 3D generativa sullo sfondo, testo in HTML sopra
          ============================================================ -->
     <section class="eroe" aria-labelledby="eroe-titolo">
-      <!-- Lo strato della scena 3D: solo decorativo, nessun contenuto informativo -->
-      <div class="eroe__scena" aria-hidden="true">
-        <canvas data-scena-eroe></canvas>
-        <!-- Ripiego statico: mostrato se WebGL non è disponibile o il dispositivo non regge -->
-        <div class="eroe__ripiego" data-eroe-ripiego></div>
-      </div>
-
-      <!-- L'auto sovrapposta: foto del cliente, parallasse leggera -->
-      <img class="eroe__veicolo" data-eroe-veicolo
-        src="./assets/images/auto-hero.webp"
-        alt="Automobile dopo l'intervento di carrozzeria e verniciatura presso Global Car"
-        width="1024" height="1024" fetchpriority="high" decoding="async" />
-
-      <div class="contenitore eroe__contenuto">
-        <p class="eroe__occhiello">Carrozzeria a Roma est · dal 2022</p>
-        <h1 class="eroe__titolo" id="eroe-titolo">
-          La tua auto torna<br />
-          <span class="eroe__titolo-accento">come prima</span>. O meglio.
-        </h1>
-        <p class="eroe__testo">
-          Verniciatura, riparazione sinistri e gestione completa della pratica
-          assicurativa. Tu ci lasci le chiavi, al resto pensiamo noi.
-        </p>
-        <div class="eroe__azioni">
-          <a class="bottone bottone--pieno bottone--grande" href="#contatti">
-            Preventivo gratuito
-          </a>
-          <a class="bottone bottone--fantasma bottone--grande" href="tel:+390662208600">
-            Chiama 06 6220 8600
-          </a>
+      <div class="contenitore eroe__griglia">
+        <div class="eroe__contenuto">
+          <p class="eroe__occhiello">Carrozzeria a Roma est · dal 2022</p>
+          <h1 class="eroe__titolo" id="eroe-titolo">
+            La tua auto torna<br />
+            <span class="eroe__titolo-accento">come prima</span>. O meglio.
+          </h1>
+          <p class="eroe__testo">
+            Verniciatura, riparazione sinistri e gestione completa della pratica
+            assicurativa. Tu ci lasci le chiavi, al resto pensiamo noi.
+          </p>
+          <div class="eroe__azioni">
+            <a class="bottone bottone--pieno bottone--grande" href="./contatti.html">
+              Preventivo gratuito
+            </a>
+            <a class="bottone bottone--fantasma bottone--grande" href="tel:+390662208600">
+              Chiama 06 6220 8600
+            </a>
+          </div>
+          <ul class="eroe__garanzie">
+            <li>Pratica assicurativa gestita da noi</li>
+            <li>Preventivo senza impegno</li>
+            <li>Carro attrezzi disponibile</li>
+          </ul>
         </div>
-        <ul class="eroe__garanzie">
-          <li>Pratica assicurativa gestita da noi</li>
-          <li>Preventivo senza impegno</li>
-          <li>Carro attrezzi disponibile</li>
-        </ul>
+        <div class="eroe__finestra" aria-hidden="true"></div>
       </div>
 
       <a class="eroe__scorri" href="#servizi" aria-label="Scorri ai servizi">
@@ -189,7 +198,7 @@
               <li>Lucidatura e correzione graffi</li>
               <li>Riparazione ammaccature</li>
             </ul>
-            <a class="collegamento-azione" href="#contatti">
+            <a class="collegamento-azione" href="./contatti.html">
               Chiedi un preventivo
               <span aria-hidden="true">→</span>
             </a>
@@ -209,7 +218,7 @@
               <li>Cristalli e fari</li>
               <li>Tempi di consegna concordati</li>
             </ul>
-            <a class="collegamento-azione" href="#contatti">
+            <a class="collegamento-azione" href="./contatti.html">
               Chiedi un preventivo
               <span aria-hidden="true">→</span>
             </a>
@@ -229,7 +238,7 @@
               <li>Assistenza nella documentazione</li>
               <li>Carro attrezzi su chiamata</li>
             </ul>
-            <a class="collegamento-azione" href="#contatti">
+            <a class="collegamento-azione" href="./contatti.html">
               Parlane con noi
               <span aria-hidden="true">→</span>
             </a>
@@ -242,20 +251,28 @@
           <h3 class="servizi-secondari__titolo">Facciamo anche</h3>
           <ul class="servizi-secondari__lista">
             <li>
-              <span class="servizi-secondari__nome">Diagnostica auto</span>
-              <span class="servizi-secondari__nota">Lettura centralina e ricerca guasti</span>
+              <a href="./diagnostica.html">
+                <span class="servizi-secondari__nome">Diagnostica auto</span>
+                <span class="servizi-secondari__nota">Lettura centralina e ricerca guasti</span>
+              </a>
             </li>
             <li>
-              <span class="servizi-secondari__nome">Riparazioni rapide</span>
-              <span class="servizi-secondari__nota">Interventi in giornata dove possibile</span>
+              <a href="./riparazioni-rapide.html">
+                <span class="servizi-secondari__nome">Riparazioni rapide</span>
+                <span class="servizi-secondari__nota">Interventi in giornata dove possibile</span>
+              </a>
             </li>
             <li>
-              <span class="servizi-secondari__nome">Sostituzione gomme</span>
-              <span class="servizi-secondari__nota">Cambio stagionale ed equilibratura</span>
+              <a href="./gomme.html">
+                <span class="servizi-secondari__nome">Sostituzione gomme</span>
+                <span class="servizi-secondari__nota">Cambio stagionale ed equilibratura</span>
+              </a>
             </li>
             <li>
-              <span class="servizi-secondari__nome">Revisione auto</span>
-              <span class="servizi-secondari__nota">Pratica e controlli di legge</span>
+              <a href="./revisione.html">
+                <span class="servizi-secondari__nome">Revisione auto</span>
+                <span class="servizi-secondari__nota">Pratica e controlli di legge</span>
+              </a>
             </li>
             <li>
               <span class="servizi-secondari__nome">Carro attrezzi</span>
@@ -273,19 +290,12 @@
     </section>
 
     <!-- ============================================================
-         CUORE 3D — il percorso, sequenza di fotogrammi legata allo
-         scroll (Modulo 10). Il testo resta HTML e leggibile sempre.
+         CUORE 3D — la camera è già nel viaggio; qui restano i passaggi
+         in HTML, a sinistra, mentre a destra si vede la cabina.
          ============================================================ -->
     <section class="percorso" id="percorso" aria-labelledby="percorso-titolo">
-      <div class="percorso__media" aria-hidden="true">
-        <img class="percorso__ripiego"
-          src="./assets/images/officina-lavoro.jpg"
-          alt="" width="1200" height="800" loading="lazy" decoding="async" />
-        <canvas data-sequenza-percorso></canvas>
-        <div class="percorso__velatura"></div>
-      </div>
-
-      <div class="contenitore percorso__contenuto">
+      <div class="contenitore percorso__griglia">
+        <div class="percorso__contenuto">
         <header class="sezione__intestazione sezione__intestazione--chiara">
           <p class="sezione__occhiello">Come lavoriamo</p>
           <h2 class="sezione__titolo" id="percorso-titolo">
@@ -327,6 +337,8 @@
             </p>
           </li>
         </ol>
+        </div>
+        <div class="percorso__finestra" aria-hidden="true"></div>
       </div>
     </section>
 
@@ -622,12 +634,12 @@
       <div class="piede__colonna">
         <h2 class="piede__titolo">Servizi</h2>
         <ul class="piede__lista">
-          <li><a href="#servizi">Verniciatura</a></li>
-          <li><a href="#servizi">Riparazione sinistri</a></li>
-          <li><a href="#servizi">Gestione sinistri</a></li>
-          <li><a href="#servizi">Diagnostica auto</a></li>
-          <li><a href="#servizi">Sostituzione gomme</a></li>
-          <li><a href="#servizi">Revisione auto</a></li>
+          <li><a href="./index.html#servizi">Verniciatura</a></li>
+          <li><a href="./index.html#servizi">Riparazione sinistri</a></li>
+          <li><a href="./diagnostica.html">Diagnostica auto</a></li>
+          <li><a href="./riparazioni-rapide.html">Riparazioni rapide</a></li>
+          <li><a href="./gomme.html">Sostituzione gomme</a></li>
+          <li><a href="./revisione.html">Revisione auto</a></li>
         </ul>
       </div>
 
@@ -683,7 +695,7 @@
       </svg>
       WhatsApp
     </a>
-    <a class="barra-mobile__azione barra-mobile__azione--preventivo" href="#contatti">
+    <a class="barra-mobile__azione barra-mobile__azione--preventivo" href="./contatti.html">
       Preventivo
     </a>
   </div>

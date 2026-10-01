@@ -1,0 +1,210 @@
+/* Pagine interne: hero fotografica Higgsfield + contenuto da globalcarsrl.it */
+
+.pagina-eroe {
+  position: relative;
+  min-height: clamp(22rem, 52vh, 34rem);
+  display: flex;
+  align-items: flex-end;
+  padding: calc(var(--altezza-intestazione) + 2.5rem) 0 3.5rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.pagina-eroe__fondo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pagina-eroe::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    var(--carbone) 0%,
+    color-mix(in srgb, var(--carbone) 55%, transparent) 48%,
+    color-mix(in srgb, var(--carbone) 25%, transparent) 100%
+  );
+}
+
+.pagina-eroe__contenuto {
+  position: relative;
+  max-width: 44rem;
+}
+
+.articolo {
+  padding-block: var(--sezione-y);
+}
+
+.articolo__griglia {
+  display: grid;
+  gap: var(--spazio-7);
+}
+
+@media (min-width: 56rem) {
+  .articolo__griglia--due {
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: start;
+  }
+}
+
+.articolo p {
+  margin-bottom: var(--spazio-4);
+  max-width: 62ch;
+}
+
+.articolo h2 {
+  font-size: var(--t-lg);
+  margin: var(--spazio-7) 0 var(--spazio-4);
+}
+
+.articolo h3 {
+  font-size: var(--t-md);
+  margin: var(--spazio-6) 0 var(--spazio-3);
+}
+
+.articolo__media img {
+  width: 100%;
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+}
+
+.articolo__media figcaption {
+  margin-top: var(--spazio-3);
+  font-size: var(--t-sm);
+  color: var(--alluminio-tenue);
+}
+
+.blocchi-servizio {
+  display: grid;
+  gap: var(--spazio-5);
+  margin-top: var(--spazio-6);
+}
+
+@media (min-width: 48rem) {
+  .blocchi-servizio {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.blocco-servizio {
+  padding: var(--spazio-5);
+  background-color: var(--superficie);
+  border: 1px solid var(--bordo);
+  border-left: 2px solid var(--accento);
+}
+
+.elenco-blog {
+  display: grid;
+  gap: var(--spazio-4);
+  margin-top: var(--spazio-6);
+}
+
+.elenco-blog a {
+  display: block;
+  padding: var(--spazio-4) var(--spazio-5);
+  background-color: var(--superficie);
+  border: 1px solid var(--bordo);
+  text-decoration: none;
+  color: var(--bianco);
+  transition: border-color 200ms ease;
+}
+
+.elenco-blog a:hover {
+  border-color: var(--accento);
+}
+
+.elenco-blog__meta {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: var(--t-sm);
+  color: var(--alluminio-tenue);
+}
+
+.articolo__azione {
+  margin-top: var(--spazio-7);
+}
+
+.articolo__nota {
+  margin-top: var(--spazio-7);
+}
+
+.griglia-blog {
+  display: grid;
+  gap: var(--spazio-5);
+}
+
+@media (min-width: 40rem) {
+  .griglia-blog {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 64rem) {
+  .griglia-blog {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+.card-blog {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--superficie);
+  border: 1px solid var(--bordo);
+  text-decoration: none;
+  color: var(--bianco);
+  overflow: hidden;
+  min-height: 12rem;
+}
+
+.card-blog img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.card-blog h2 {
+  font-size: var(--t-base);
+  margin: var(--spazio-4) var(--spazio-4) var(--spazio-2);
+}
+
+.card-blog span {
+  margin: 0 var(--spazio-4) var(--spazio-4);
+  font-size: var(--t-sm);
+  color: var(--alluminio-tenue);
+}
+
+.card-blog:hover {
+  border-color: var(--accento);
+}
+
+.numeri-team {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spazio-5);
+  margin: var(--spazio-6) 0;
+}
+
+.numeri-team__voce {
+  padding: var(--spazio-5);
+  background-color: var(--superficie);
+  border: 1px solid var(--bordo);
+}
+
+.numeri-team__numero {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  font-weight: 900;
+  color: var(--bianco);
+}
+
+.numeri-team__etichetta {
+  font-size: var(--t-sm);
+  color: var(--alluminio-tenue);
+}

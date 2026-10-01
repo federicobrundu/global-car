@@ -46,3 +46,42 @@ export function progressoScorrimento(elemento) {
   const percorso = altezzaFinestra - rettangolo.top;
   return limita(percorso / totale, 0, 1);
 }
+
+/** Progresso 0..1 sull'intera pagina: la linea del tempo del viaggio. */
+export function progressoPagina() {
+  const massimo = document.documentElement.scrollHeight - window.innerHeight;
+  if (massimo <= 1) return 0;
+  return limita(window.scrollY / massimo, 0, 1);
+}
+
+/**
+ * Interpola tra fotogrammi chiave (p da 0 a 1) con smoothstep.
+ * Ogni fotogramma è un oggetto di numeri o vettori [x,y,z].
+ */
+export function interpolaFotogrammi(fotogrammi, p) {
+  const progresso = limita(p, 0, 1);
+  let i = 0;
+  while (i < fotogrammi.length - 1 && fotogrammi[i + 1].p <= progresso) i += 1;
+  const a = fotogrammi[i];
+  const b = fotogrammi[Math.min(i + 1, fotogrammi.length - 1)];
+  if (a === b || a.p === b.p) return a;
+
+  const t = (progresso - a.p) / (b.p - a.p);
+  const s = t * t * (3 - 2 * t);
+  const mix = (x, y) => x + (y - x) * s;
+
+  const risultato = { p: progresso };
+  for (const chiave of Object.keys(a)) {
+    if (chiave === 'p') continue;
+    const va = a[chiave];
+    const vb = b[chiave];
+    if (Array.isArray(va) && Array.isArray(vb)) {
+      risultato[chiave] = va.map((n, k) => mix(n, vb[k]));
+    } else if (typeof va === 'number' && typeof vb === 'number') {
+      risultato[chiave] = mix(va, vb);
+    } else {
+      risultato[chiave] = s < 0.5 ? va : vb;
+    }
+  }
+  return risultato;
+}
