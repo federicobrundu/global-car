@@ -70,7 +70,9 @@ git remote add origin https://github.com/TUO-UTENTE/global-car.git
 git push -u origin main
 ```
 
-3. Su GitHub: **Settings → Pages → Source: GitHub Actions**.
+3. Su GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+   Non usare “Deploy from a branch”: pubblicherebbe l’HTML grezzo (pagina bianca, senza CSS).
+   Il ramo del repository è `master`; il workflow parte sia da `master` sia da `main`.
 
 Il workflow in `.github/workflows/deploy-pages.yml` costruisce il sito e lo pubblica a ogni push su `main`.
 
