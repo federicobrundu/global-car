@@ -1,0 +1,238 @@
+/* ============================================================
+   BASE — reset, variabili di progetto, tipografia
+   Palette e font sono fissati in PROGETTO.md: non cambiarli qui
+   senza aggiornare quel documento.
+   ============================================================ */
+
+:root {
+  /* Colori — tre tinte + un solo accento */
+  --carbone: #0b0d10;
+  --superficie: #15191e;
+  --superficie-2: #1e242b;
+  --bordo: #2a3139;
+  --alluminio: #c9cfd6;
+  --alluminio-tenue: #8b949e;
+  --bianco: #f5f7f9;
+  --accento: #ff3b2f;
+  --accento-scuro: #b32018;
+  --accento-tenue: rgba(255, 59, 47, 0.12);
+
+  /* Tipografia */
+  --font-display: 'Archivo', 'Arial Narrow', sans-serif;
+  --font-corpo: 'Karla', system-ui, sans-serif;
+
+  /* Scala tipografica fluida */
+  --t-xs: clamp(0.75rem, 0.73rem + 0.1vw, 0.8rem);
+  --t-sm: clamp(0.875rem, 0.85rem + 0.12vw, 0.95rem);
+  --t-base: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --t-md: clamp(1.15rem, 1.08rem + 0.35vw, 1.35rem);
+  --t-lg: clamp(1.45rem, 1.3rem + 0.75vw, 2rem);
+  --t-xl: clamp(1.9rem, 1.55rem + 1.75vw, 3rem);
+  --t-2xl: clamp(2.1rem, 1.6rem + 2.4vw, 3.4rem);
+  --t-3xl: clamp(2.3rem, 1.75rem + 2.6vw, 3.9rem);
+
+  /* Ritmo verticale */
+  --spazio-1: 0.25rem;
+  --spazio-2: 0.5rem;
+  --spazio-3: 0.75rem;
+  --spazio-4: 1rem;
+  --spazio-5: 1.5rem;
+  --spazio-6: 2rem;
+  --spazio-7: 3rem;
+  --spazio-8: 4rem;
+  --spazio-9: 6rem;
+  --spazio-10: 8rem;
+
+  --sezione-y: clamp(4rem, 9vw, 8rem);
+  --contenitore: 76rem;
+  --raggio: 2px; /* angoli quasi vivi: linguaggio industriale, non "app" */
+  --raggio-grande: 4px;
+
+  /* Curve di easing — nominate come nella skill ui-animation */
+  --curva-entrata: cubic-bezier(0.22, 1, 0.36, 1);
+  --curva-movimento: cubic-bezier(0.25, 1, 0.5, 1);
+
+  --altezza-intestazione: 4.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Le ancore non finiscono sotto l'intestazione fissa */
+  scroll-padding-top: calc(var(--altezza-intestazione) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--carbone);
+  color: var(--alluminio);
+  font-family: var(--font-corpo);
+  font-size: var(--t-base);
+  line-height: 1.65;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Trama sottile di fondo: dà atmosfera senza immagini */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255, 59, 47, 0.07), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 20%, rgba(255, 176, 32, 0.04), transparent);
+}
+
+img,
+picture,
+svg,
+canvas,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 112%; /* Archivo variabile: leggermente espanso, più industriale */
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  color: var(--bianco);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--bianco);
+  text-decoration-color: color-mix(in srgb, var(--accento) 60%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color 200ms ease;
+}
+
+a:hover {
+  color: var(--accento);
+}
+
+strong {
+  color: var(--bianco);
+  font-weight: 700;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+/* Focus visibile: requisito di accessibilità, non un dettaglio estetico */
+:focus-visible {
+  outline: 2px solid var(--accento);
+  outline-offset: 3px;
+  border-radius: var(--raggio);
+}
+
+::selection {
+  background-color: var(--accento);
+  color: var(--bianco);
+}
+
+/* Link di salto per chi naviga da tastiera */
+.salta-contenuto {
+  position: absolute;
+  left: var(--spazio-4);
+  top: var(--spazio-4);
+  z-index: 200;
+  padding: var(--spazio-2) var(--spazio-4);
+  background-color: var(--accento);
+  color: var(--bianco);
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform 200ms var(--curva-entrata);
+}
+
+.salta-contenuto:focus-visible {
+  transform: translateY(0);
+  color: var(--bianco);
+}
+
+.contenitore {
+  width: 100%;
+  max-width: var(--contenitore);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+/* ============================================================
+   ENTRATE DELLE SEZIONI
+   Un'entrata per contenitore, mai contenitore + figli insieme.
+   ============================================================ */
+[data-rivela] {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity 600ms var(--curva-entrata),
+    transform 600ms var(--curva-entrata);
+}
+
+[data-rivela].e-visibile {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   RIDUZIONE DEL MOVIMENTO
+   Ogni animazione ha un percorso alternativo. È una riga di codice
+   e evita l'unica categoria di reclamo a cui non si può rispondere.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-rivela] {
+    opacity: 1;
+    transform: none;
+  }
+}

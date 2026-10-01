@@ -1,0 +1,386 @@
+/* ============================================================
+   COMPONENTI — bottoni, card, form
+   Durate e curve seguono la tabella della skill ui-animation:
+   pressione 100-160ms, hover 200ms, nessuna transizione su layout.
+   ============================================================ */
+
+/* ---------- BOTTONI ---------- */
+.bottone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spazio-2);
+  padding: 0.7rem 1.25rem;
+  font-family: var(--font-display);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  font-stretch: 108%;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--raggio);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease,
+    transform 140ms var(--curva-entrata);
+}
+
+.bottone:active {
+  transform: scale(0.97);
+}
+
+.bottone--pieno {
+  background-color: var(--accento);
+  color: var(--bianco);
+}
+
+.bottone--pieno:hover {
+  background-color: var(--accento-scuro);
+  color: var(--bianco);
+}
+
+.bottone--fantasma {
+  background-color: transparent;
+  border-color: var(--bordo);
+  color: var(--bianco);
+}
+
+.bottone--fantasma:hover {
+  border-color: var(--accento);
+  color: var(--accento);
+}
+
+.bottone--grande {
+  padding: 0.95rem 1.75rem;
+  font-size: var(--t-base);
+}
+
+.bottone--compatto {
+  padding: 0.5rem 0.9rem;
+  font-size: var(--t-xs);
+}
+
+.bottone--largo {
+  width: 100%;
+}
+
+/* ---------- COLLEGAMENTO AZIONE ---------- */
+.collegamento-azione {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spazio-2);
+  font-family: var(--font-display);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accento);
+}
+
+.collegamento-azione span {
+  transition: transform 200ms var(--curva-entrata);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .collegamento-azione:hover span {
+    transform: translateX(0.25rem);
+  }
+}
+
+/* ---------- CARD SERVIZIO ---------- */
+.servizio {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spazio-3);
+  padding: var(--spazio-5);
+  background-color: var(--superficie);
+  border: 1px solid var(--bordo);
+  border-top: 2px solid var(--bordo);
+  border-radius: var(--raggio);
+  transition:
+    border-top-color 250ms var(--curva-entrata),
+    background-color 250ms ease,
+    transform 250ms var(--curva-entrata);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .servizio:hover {
+    border-top-color: var(--accento);
+    background-color: var(--superficie-2);
+    transform: translateY(-3px);
+  }
+}
+
+.servizio--evidenza {
+  border-top-color: var(--accento);
+  background-color: var(--superficie-2);
+}
+
+.servizio__numero {
+  font-family: var(--font-display);
+  font-size: var(--t-xs);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: var(--alluminio-tenue);
+}
+
+.servizio__titolo {
+  font-size: var(--t-lg);
+}
+
+.servizio__testo {
+  font-size: var(--t-sm);
+  color: var(--alluminio-tenue);
+}
+
+.servizio__elenco {
+  display: grid;
+  gap: var(--spazio-2);
+  font-size: var(--t-sm);
+  padding-top: var(--spazio-3);
+  border-top: 1px solid var(--bordo);
+  /* Spinge il collegamento in fondo: le card restano allineate */
+  margin-bottom: auto;
+}
+
+.servizio__elenco li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spazio-3);
+}
+
+.servizio__elenco li::before {
+  content: '';
+  width: 0.3rem;
+  height: 0.3rem;
+  margin-top: 0.55em;
+  background-color: var(--accento);
+  rotate: 45deg;
+  flex-shrink: 0;
+}
+
+.servizio .collegamento-azione {
+  margin-top: var(--spazio-4);
+}
+
+/* ---------- PILASTRO (perché noi) ---------- */
+.pilastro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spazio-3);
+  padding: var(--spazio-5) var(--spazio-5) var(--spazio-5) 0;
+  border-top: 1px solid var(--bordo);
+}
+
+.pilastro__icona {
+  width: 2rem;
+  height: 2rem;
+  color: var(--accento);
+}
+
+.pilastro__titolo {
+  font-size: var(--t-md);
+}
+
+.pilastro__testo {
+  font-size: var(--t-sm);
+  color: var(--alluminio-tenue);
+}
+
+/* ---------- RECENSIONE ---------- */
+.recensione {
+  max-width: 44rem;
+  padding: var(--spazio-6);
+  background-color: var(--carbone);
+  border: 1px solid var(--bordo);
+  border-left: 2px solid var(--accento);
+  border-radius: var(--raggio);
+}
+
+.recensione__stelle {
+  color: var(--accento);
+  font-size: var(--t-md);
+  letter-spacing: 0.15em;
+  margin-bottom: var(--spazio-4);
+}
+
+.recensione__testo p {
+  font-family: var(--font-display);
+  font-size: var(--t-lg);
+  font-weight: 500;
+  font-stretch: 104%;
+  line-height: 1.35;
+  color: var(--bianco);
+  letter-spacing: -0.01em;
+}
+
+.recensione__testo p::before {
+  content: '\201C';
+}
+
+.recensione__testo p::after {
+  content: '\201D';
+}
+
+.recensione__autore {
+  margin-top: var(--spazio-5);
+  padding-top: var(--spazio-4);
+  border-top: 1px solid var(--bordo);
+  display: flex;
+  flex-direction: column;
+}
+
+.recensione__nome {
+  font-weight: 700;
+  color: var(--bianco);
+}
+
+.recensione__fonte {
+  font-size: var(--t-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--alluminio-tenue);
+}
+
+/* ---------- CANALE DI CONTATTO ---------- */
+.canale {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: var(--spazio-4);
+  background-color: var(--superficie);
+  border: 1px solid var(--bordo);
+  border-left: 2px solid var(--bordo);
+  border-radius: var(--raggio);
+  text-decoration: none;
+  transition:
+    border-left-color 200ms ease,
+    background-color 200ms ease;
+}
+
+.canale:hover {
+  border-left-color: var(--accento);
+  background-color: var(--superficie-2);
+  color: var(--bianco);
+}
+
+.canale--primario {
+  border-left-color: var(--accento);
+}
+
+.canale--urgenza {
+  border-style: dashed;
+  border-left-style: solid;
+}
+
+.canale__etichetta {
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--alluminio-tenue);
+}
+
+.canale__valore {
+  font-family: var(--font-display);
+  font-size: var(--t-md);
+  font-weight: 800;
+  color: var(--bianco);
+}
+
+/* ---------- MODULO ---------- */
+.modulo {
+  display: grid;
+  gap: var(--spazio-4);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background-color: var(--superficie);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio-grande);
+}
+
+.modulo__titolo {
+  font-size: var(--t-lg);
+  margin-bottom: var(--spazio-1);
+}
+
+.campo {
+  display: grid;
+  gap: var(--spazio-2);
+}
+
+.campo label {
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--alluminio-tenue);
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  background-color: var(--carbone);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  color: var(--bianco);
+  font-size: var(--t-base);
+  transition:
+    border-color 200ms ease,
+    background-color 200ms ease;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+  color: color-mix(in srgb, var(--alluminio-tenue) 70%, transparent);
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: var(--accento);
+  background-color: var(--superficie-2);
+}
+
+.campo textarea {
+  resize: vertical;
+  min-height: 6rem;
+  font-family: var(--font-corpo);
+}
+
+/* Campo con casella di spunta: etichetta normale, non maiuscoletto */
+.campo--scelta {
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: var(--spazio-3);
+}
+
+.campo--scelta input {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.2rem;
+  accent-color: var(--accento);
+  padding: 0;
+}
+
+.campo--scelta label {
+  font-size: var(--t-xs);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.5;
+  color: var(--alluminio-tenue);
+}
+
+.modulo__nota {
+  font-size: var(--t-xs);
+  color: var(--alluminio-tenue);
+  text-align: center;
+}
